@@ -1,0 +1,19 @@
+original_metadata_column,R_variable,figure_label,definition
+mes_score,mes_score,Mesenchymal Score,GO:0048762
+Endothelial,Endothelial,Endothelial cells,CIBERSORTx cell fraction
+tcell_score,tcell_score,T cell score,GO:0042110
+cell_adhesion,cell_adhesion,Cell Adhesion,GO:0098609
+kegg_focal_adhesion,kegg_focal_adhesion,Focal Adhesion,KEGG:M7253
+go_resp_electron_transport,go_resp_electron_transport,Respiratory Transport Chain,GO:0022904
+HPV_integration,HPV_integration,HPV integration,clinical/molecular variable
+p_emt_zt,p_emt_zt,p-EMT,p-EMT signature (Methods reference)
+kegg_ox_phos_score,kegg_ox_phos_score,OXPHOS,KEGG:M19540
+Malignant,Malignant,Malignant Cells,CIBERSORTx cell fraction
+kerat_score,kerat_score,Keratinization Score,GO:0030216
+emt_score,emt_score,EMT,EMT signature (Methods reference)
+T cells CD4,T.cells.CD4,CD4 T cells,CIBERSORTx cell fraction
+Macrophage,Macrophage,Macrophages,CIBERSORTx cell fraction
+Fibroblast,Fibroblast,Fibroblasts,CIBERSORTx cell fraction
+T cells CD8,T.cells.CD8,CD8 T cells,CIBERSORTx cell fraction
+Dendritic,Dendritic,Dendritic Cells,CIBERSORTx cell fraction
+bcell_score,bcell_score,B cell score,GO:0042113

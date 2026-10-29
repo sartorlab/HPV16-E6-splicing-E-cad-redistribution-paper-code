@@ -1,0 +1,4 @@
+"collection"	"source"	"version"	"package"	"download_url"	"acquired_utc"
+"GO_BP"	"Human MSigDB C5 GO:BP via msigdbr"	"2026.1.Hs"	"msigdbr 26.1.0"	"https://zenodo.org/records/18968178/files/msigdb.2026.1.zip?download=1"	"2026-10-16 05:15:21 UTC"
+"HALLMARK"	"Human MSigDB H via msigdbr"	"2026.1.Hs"	"msigdbr 26.1.0"	"https://zenodo.org/records/18968178/files/msigdb.2026.1.zip?download=1"	"2026-10-16 05:15:21 UTC"
+"KEGG_PATHWAY"	"KEGG REST human PATHWAY"	"Last update 2026/10/15"	"base R download.file"	"https://rest.kegg.jp/link/hsa/pathway"	"2026-10-16 05:15:21 UTC"

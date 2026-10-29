@@ -1,0 +1,7 @@
+comparison_order	comparison	numerator	denominator	label	orientation
+1	E6IvsFL	E6I	FL	E6*I vs FL	1
+2	E6IvsFLm	E6I	FLm	E6*I vs FLm	1
+3	E6IvsPCD	E6I	PCD	E6*I vs PCD	-1
+4	FLvsFLm	FL	FLm	FL vs FLm	1
+5	FLvsPCD	FL	PCD	FL vs PCD	-1
+6	FLmvsPCD	FLm	PCD	FLm vs PCD	-1

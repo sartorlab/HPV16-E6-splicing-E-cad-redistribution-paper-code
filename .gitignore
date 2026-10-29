@@ -1,0 +1,13 @@
+build/
+output/
+.R_library_path
+.Rhistory
+.RData
+.Rprofile
+renv/library/
+renv/staging/
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store

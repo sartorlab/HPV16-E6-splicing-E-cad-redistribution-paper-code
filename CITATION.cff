@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite the paper and the archived release corresponding to the analysis used."
+type: software
+title: "Reproducible analyses for HPV16 E6 splicing and oropharyngeal cancer"
+version: 1.0.0-rc.3
+license: MIT
+authors:
+  - family-names: Garb
+    given-names: Bailey F.
+  - family-names: Xia
+    given-names: Shaomiao
+  - family-names: Sartor
+    given-names: Maureen A.
+abstract: "Code and data for Figure 7B-F, Figure S7A-F, and Figure S8A-E in the October 27 revision of the HPV16 E6 splicing manuscript."
+keywords:
+  - HPV16
+  - E6 splicing
+  - oropharyngeal cancer
+  - RNA-seq
+  - reproducibility

@@ -1,0 +1,34 @@
+# Linux bootstrap specification, not a solved platform lock.
+# Install Python pins with pip and R pins with renv after creating this environment.
+name: e6splice-panels
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.14
+  - pip
+  - r-base=4.4.3
+  - r-renv
+  - r-biocmanager
+  - c-compiler
+  - cxx-compiler
+  - fortran-compiler
+  - make
+  - pkg-config
+  - libcurl
+  - openssl
+  - libxml2
+  - zlib
+  - bzip2
+  - xz
+  - freetype
+  - fontconfig
+  - harfbuzz
+  - fribidi
+  - libpng
+  - libtiff
+  - libjpeg-turbo
+  - cairo
+  - pango
+  - ghostscript
+  - librsvg
+  - fonts-conda-forge
