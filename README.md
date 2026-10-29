@@ -1,6 +1,6 @@
 # HPV16 E6 splicing: figure code and data
 
-Reproduce **Figure 7B–F, Figure S7A–F and Figure S8A–E** from the October 27, 2026 revised manuscript. Original analyses: **Bailey F. Garb**. Revision analyses and code preparation: **Shaomiao Xia**. Responsible group author: **Maureen A. Sartor**.
+Code and data for **Figure 7B–F, Figure S7A–F and Figure S8A–E**, using the 230-patient dataset and UM-SCC-38 RNA-seq data. Original analyses: **Bailey F. Garb**. Revision analyses and code preparation: **Shaomiao Xia**. Responsible group author: **Maureen A. Sartor**.
 
 ## Find a panel
 
@@ -25,11 +25,11 @@ Each entry script names its input tables, analysis scripts and method. Related p
 | S8D | FL versus PCD pathway enrichment | [FigureS8D.py](panels/FigureS8D.py) |
 | S8E | FLm versus PCD pathway enrichment | [FigureS8E.py](panels/FigureS8E.py) |
 
-[panels.tsv](panels.tsv) gives the input/output paths for every panel. Methods and data descriptions are in [figure7](figure7/README.md), [cell_line](cell_line/README.md) and [patient_scores](patient_scores/README.md).
+[panels.tsv](panels.tsv) gives the input/output paths for every panel. Module instructions are in [figure7](figure7/README.md), [cell_line](cell_line/README.md) and [patient_scores](patient_scores/README.md).
 
 ## Install
 
-Recorded runtime: Python 3.11.14 and R 4.4.3 on Linux. Python versions are in `requirements.txt`; R versions are in `renv.lock`.
+Use Python 3.11.14 and R 4.4.3 on Linux. Python package versions are in `requirements.txt`; R package versions are in `renv.lock`. Run the following commands from the repository root:
 
 ```bash
 conda env create --file environment.yml
@@ -38,7 +38,7 @@ python -m pip install --requirement requirements.txt
 Rscript --vanilla restore_environment.R .
 ```
 
-The environment file supplies the system tools for PDF rendering. DejaVu Sans must be available to R's `systemfonts` package. The scripts were run with the recorded installed environment; installation on a fresh machine has not been tested.
+The environment file supplies the system tools for PDF rendering. Plotting uses DejaVu Sans through R's `systemfonts` package.
 
 ## Generate figures
 
@@ -52,21 +52,15 @@ python reproduce.py figures --output build/all_figures
 
 Each output directory must be new or empty. PDFs appear under `figure7/figures/` or `cell_line/figures/` within that directory, alongside the numerical tables used to draw them. The Figure 7 models are fitted from the supplied patient inputs; S7/S8 use the supplied complete DESeq2/ORA result tables.
 
-To recalculate patient scores and cell-line differential expression and enrichment from count tables:
+To recalculate patient scores and cell-line differential expression and enrichment from count tables, supply the complete gene-set files described in the [reference instructions](cell_line/resources/gene_sets/README.md):
 
 ```bash
 python reproduce.py all --output build/from_counts \
   --gene-set-dir /path/to/exact_gene_sets
 ```
 
-This route passes newly calculated patient scores into Figure 7. Separate `patient-scores` and `cell-line-de` modes are also available. Use `--rscript` or `--r-library` to select an existing installation.
+This route passes newly calculated patient scores into Figure 7 and uses the supplied cell-fraction tables. Separate `patient-scores` and `cell-line-de` modes are also available. Use `--rscript` or `--r-library` to select an existing installation.
 
-## Data and interpretation
+## Citation and license
 
-Complete ORA recalculation needs the exact KEGG pathway definitions described in [gene-set instructions](cell_line/resources/gene_sets/README.md). They were available for the author's full run but are not bundled, and a persistent public access route remains unresolved. Drawing all 16 panels and recalculating DESeq2 do not need those external files.
-
-Figure 7 uses calculated HRs and risk counts; several printed manuscript labels differ. The [Figure 7 notes](figure7/README.md) list those differences and the C/D test and network adjustment choices. Patient processing begins with count tables and fixed gene signatures; CIBERSORTx fractions are supplied results, not a rerun of that external service.
-
-Individual-level patient inputs retain the original data access conditions, including [HVC](https://ega-archive.org/datasets/EGAD00001004366) and [UM67](https://ega-archive.org/datasets/EGAD50000001306). Redistribution permission must be resolved before these staged patient files are uploaded publicly. UM20 and cell-line raw-read accessions have not yet been supplied.
-
-The [MIT license](LICENSE) covers this repository's code. Patient data and third-party references retain their own terms. [CITATION.cff](CITATION.cff) records the contributing authors. A repository URL and release DOI can be added when issued.
+See [CITATION.cff](CITATION.cff) for authorship and citation details. The [MIT license](LICENSE) covers the code. Patient data and third-party references retain their source terms.

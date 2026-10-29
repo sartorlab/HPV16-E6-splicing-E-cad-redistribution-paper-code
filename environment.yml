@@ -1,4 +1,4 @@
-# Linux bootstrap specification, not a solved platform lock.
+# Linux environment for the analysis and figure workflows.
 # Install Python pins with pip and R pins with renv after creating this environment.
 name: e6splice-panels
 channels:

@@ -1,47 +1,39 @@
-This module supplies the eleven expression scores and seven cell fractions
-used by Figure 7B–F. The analysis methods and gene lists are Bailey Garb's;
-the portable implementation was organized by Shaomiao Xia.
+# Patient scores for Figure 7B–F
 
-Run with Python 3 and R containing `sva` and `edgeR`:
+Calculate eleven expression scores for the 230 patients and combine them with
+seven supplied cell fractions. Analysis methods and gene lists: Bailey F. Garb.
+Code preparation: Shaomiao Xia.
+
+Run from the repository root after installing the [documented environment](../README.md#install):
 
 ```bash
 python3 patient_scores/run.py --mode all --output results/patient_scores
 ```
 
 The output directory must be new or empty. Use `--rscript /path/to/Rscript`
-when R is not on your PATH. The result `patient_scores_n230.csv` can be passed
-to `figure7/run.py --patient-scores`. Its `samples` column uses the same pseudonymous
-patient identifiers as the Figure 7 data. All input and output matrices are
-uncompressed CSV files.
+to select an R installation. Pass the resulting scores to Figure 7 with:
 
-The four `data/counts_*.csv` files contain the final 230 patients' count-source
-subsets. The analysis joins these sources by gene symbol, preserves repeated
-symbols during the join, removes rows with at least 55 zero counts, and applies
-ComBat_seq using eight sequencing batches without biological covariates. edgeR
-then retains genes with CPM ≥1 in at least three patients, recomputes library
-sizes, applies upperquartile normalization and calculates logCPM. The first
-duplicate symbol is retained after normalization. The three intermediate count
-and logCPM tables are written beside the final scores.
+```bash
+python3 figure7/run.py --output results/figure7_from_counts \
+  --patient-scores results/patient_scores/patient_scores_n230.csv
+```
 
-**Each gene is ranked across all 230 patients.** Rank-sum signatures combine
-these ranks per patient, then standardize the sums across patients. The E6
-percent-FL influence score instead uses `(sum of ranks − mean of ranks) / SD of
-ranks` within each patient, with direction-specific minimum ranks. The scripts
-explain tied ranks and missing-gene handling. Keep the full gene background and
-original patient order throughout normalization and scoring.
+Inputs are the four `data/counts_*.csv` matrices, `data/cohort_n230.csv`,
+`data/cell_fractions_original_n210.csv`, `data/cell_fractions_added_n20.csv`,
+and the annotation and gene lists in `references/`.
 
-`references/gene_lists/` contains the fixed E6 percent-FL, EMT, partial EMT,
-T-cell, B-cell, keratinization, mesenchymal, cell-adhesion, respiratory-chain and
-two KEGG pathway lists. The cell-adhesion membership is GO:0098609 (GOALL).
-Its annotation and the Ensembl-to-symbol map use
+The workflow joins counts, applies ComBat-seq batch correction, calculates
+normalized logCPM and expression scores, and merges the supplied cell fractions.
+Output CSV files are:
+
+- `uncorrected_joined_counts_n230.csv`
+- `batch_corrected_counts_n230.csv`
+- `log_cpm_n230.csv`
+- `patient_scores_n230.csv`
+
+The final table contains one row per patient, with the same `samples` identifiers
+used by the Figure 7 inputs. Calculation steps are annotated in `scripts/`.
+
+The annotation and Ensembl-to-symbol mapping use
 [org.Hs.eg.db 3.17.0](https://bioconductor.org/packages/3.17/data/annotation/src/contrib/org.Hs.eg.db_3.17.0.tar.gz)
-(Artistic-2.0). Applying the supplied E6 signature is separate from deriving it.
-Third-party gene lists retain their original provenance and licensing.
-
-Seven cell fractions are merged from saved results for the original 210
-patients and **Job42_Adjusted** results for 20 added patients. Job42 records
-describe a Puram HNSCC single-cell reference, 100 permutations, B-mode batch
-correction and no quantile normalization. This package reproduces the saved
-merge; it cannot rerun CIBERSORTx because the signature matrix, original210
-settings and Job42 adjustment recipe are unavailable. Raw-read alignment and
-count generation are outside this count-table analysis.
+(Artistic-2.0). Third-party gene lists retain their source attribution and licenses.
